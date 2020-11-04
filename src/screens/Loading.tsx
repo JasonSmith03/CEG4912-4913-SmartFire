@@ -13,7 +13,7 @@ class Loading extends PureComponent {
 
   _run = async () => {
     try {
-      setTimeout(() => Navigation.setRoot(Home as any), 1000);
+      setTimeout(() => Navigation.setRoot(Home), 1000);
     } catch (e) {
       // We're not signed in use guest credentials
     }

@@ -1,3 +1,4 @@
+/* eslint-disable curly */
 import React from 'react';
 import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
@@ -24,18 +25,28 @@ export function registerLoadingScreen() {
 }
 
 Navigation.setLazyComponentRegistrator((componentName) => {
-  if (componentName === 'app.Loading') {
-    Navigation.registerComponent('app.Loading', () => sceneCreator(require('./Loading').default));
-  }
-  if (componentName === 'app.Auth') {
-    Navigation.registerComponent('app.Auth', () => sceneCreator(require('./Auth').default));
-  }
+  if (componentName === 'app.Loading') Navigation.registerComponent('app.Loading', () => sceneCreator(require('./Loading').default));
+
+  if (componentName === 'app.Auth') Navigation.registerComponent('app.Auth', () => sceneCreator(require('./Auth').default));
+
+  if (componentName === 'app.Onboarding') Navigation.registerComponent('app.Onboarding', () => sceneCreator(require('./Onboarding').default));
+
+  if (componentName === 'app.PersonalInformation')
+    Navigation.registerComponent('app.PersonalInformation', () => sceneCreator(require('./PersonalInformation').default));
+
+  if (componentName === 'app.DeviceSettings')
+    Navigation.registerComponent('app.DeviceSettings', () => sceneCreator(require('./DeviceSettings').default));
 });
 
 export const Home = {
   root: {
     stack: {
-      children: [{ component: { name: 'app.Auth', id: 'app.Auth' } }],
+      children: [
+        { component: { name: 'app.PersonalInformation', id: 'app.PersonalInformation' } },
+        { component: { name: 'app.DeviceSettings', id: 'app.DeviceSettings' } },
+        { component: { name: 'app.Auth', id: 'app.Auth' } },
+        { component: { name: 'app.Onboarding', id: 'app.Onboarding' } },
+      ],
     },
   },
 };

@@ -1,8 +1,7 @@
 declare function require(name: string): any;
-import {NativeModules} from 'react-native';
+import { NativeModules } from 'react-native';
 
-export const getDeviceLocale = () =>
-  NativeModules.I18nManager.localeIdentifier.slice(0, 2);
+export const getDeviceLocale = () => NativeModules.I18nManager.localeIdentifier.slice(0, 2);
 
 export const extractFrom = require('lodash.get');
 
@@ -53,6 +52,30 @@ export const validateRequiredField = (value: string) => {
   return error;
 };
 
+export const validatePhoneNumber = (value: string) => {
+  let error = '';
+
+  if (!value) {
+    error = 'Field Required';
+  } else if (value.trim().charAt(0) !== '+') {
+    error = 'Phone Number Invalid';
+  } else if (!value.trim().match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im)) {
+    error = 'Phone Number Invalid';
+  }
+
+  return error;
+};
+
+export const validateEmail = (value: string) => {
+  let error = '';
+  if (!value) {
+    error = 'Field Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.trim())) {
+    error = 'Email Invalid';
+  }
+  return error;
+};
+
 export const toTitleCase = (text: string) =>
   text
     ? text
@@ -63,14 +86,9 @@ export const toTitleCase = (text: string) =>
         .join(' ')
     : null;
 
-export const getFormattedDate = (d: Date) =>
-  `${('0' + d.getDate()).slice(-2)}/${('0' + (d.getMonth() + 1)).slice(
-    -2,
-  )}/${d.getFullYear()}`;
+export const getFormattedDate = (d: Date) => `${('0' + d.getDate()).slice(-2)}/${('0' + (d.getMonth() + 1)).slice(-2)}/${d.getFullYear()}`;
 
 export const getFormattedDateTime = (d: Date) =>
-  `${('0' + d.getDate()).slice(-2)}/${('0' + (d.getMonth() + 1)).slice(
-    -2,
-  )}/${d.getFullYear()} at ${('0' + d.getHours()).slice(-2)}:${(
+  `${('0' + d.getDate()).slice(-2)}/${('0' + (d.getMonth() + 1)).slice(-2)}/${d.getFullYear()} at ${('0' + d.getHours()).slice(-2)}:${(
     '0' + d.getMinutes()
   ).slice(-2)}`;

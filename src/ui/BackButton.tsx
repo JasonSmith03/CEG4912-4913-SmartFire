@@ -14,7 +14,7 @@ const BackButton = ({ onPress, ...rest }: Type) => (
 );
 
 const s = {
-  icon: { width: ms(18), height: ms(18), resizeMode: 'contain', tintColor: 'rgba(255,255,255, 0.5)' },
+  icon: { width: ms(18), height: ms(18), resizeMode: 'contain', tintColor: 'rgba(255,255,255, 0.8)' },
 };
 
 export default BackButton;
