@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081444571031",
+    "firebase_url": "https://smartfire-3e198.firebaseio.com",
+    "project_id": "smartfire-3e198",
+    "storage_bucket": "smartfire-3e198.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081444571031:android:dcbac88f63ab6f7e04d6d2",
+        "android_client_info": {
+          "package_name": "com.smartfirealarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081444571031-j1l7gcq68n8ukkagvtm6n1l9rgu42qoi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO_hLrgLF6C0VAQMa0b6oRwKilQvCyO_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081444571031-j1l7gcq68n8ukkagvtm6n1l9rgu42qoi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
