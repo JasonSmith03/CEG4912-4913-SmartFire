@@ -26,6 +26,7 @@ export function registerLoadingScreen() {
 
 Navigation.setLazyComponentRegistrator((componentName) => {
   if (componentName === 'app.Loading') Navigation.registerComponent('app.Loading', () => sceneCreator(require('./Loading').default));
+  if (componentName === 'app.Home') Navigation.registerComponent('app.Home', () => sceneCreator(require('./Home').default));
 
   if (componentName === 'app.Auth') Navigation.registerComponent('app.Auth', () => sceneCreator(require('./Auth').default));
 
@@ -45,6 +46,7 @@ export const Home = {
         { component: { name: 'app.PersonalInformation', id: 'app.PersonalInformation' } },
         { component: { name: 'app.DeviceSettings', id: 'app.DeviceSettings' } },
         { component: { name: 'app.Auth', id: 'app.Auth' } },
+        { component: { name: 'app.Home', id: 'app.Home' } },
         { component: { name: 'app.Onboarding', id: 'app.Onboarding' } },
       ],
     },
