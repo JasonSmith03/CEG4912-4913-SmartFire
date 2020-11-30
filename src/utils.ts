@@ -1,5 +1,5 @@
 declare function require(name: string): any;
-import { NativeModules } from 'react-native';
+import { NativeModules, ToastAndroid } from 'react-native';
 
 export const getDeviceLocale = () => NativeModules.I18nManager.localeIdentifier.slice(0, 2);
 
@@ -92,3 +92,7 @@ export const getFormattedDateTime = (d: Date) =>
   `${('0' + d.getDate()).slice(-2)}/${('0' + (d.getMonth() + 1)).slice(-2)}/${d.getFullYear()} at ${('0' + d.getHours()).slice(-2)}:${(
     '0' + d.getMinutes()
   ).slice(-2)}`;
+
+export const showInfo = (text = 'Something unexpected happened') => {
+  ToastAndroid.show(text, ToastAndroid.LONG);
+};

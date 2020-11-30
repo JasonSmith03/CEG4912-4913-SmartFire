@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, KeyboardAvoidingView, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, KeyboardAvoidingView, ScrollView, Text, Keyboard, InteractionManager } from 'react-native';
 import { moderateScale as ms } from 'react-native-size-matters';
 import { Navigation } from 'react-native-navigation';
 import { Form, Field } from 'react-final-form';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import ScreenHeader from '../ui/ScreenHeader';
-import { validateRequiredField } from '../utils';
+import { showInfo, validateRequiredField } from '../utils';
 import Button from '../ui/Button';
 import InputField from '../ui/InputField';
 import { colors } from '../theme';
+import Loading from '../ui/Loading';
 
 export interface IProps {
   onConfirm: (value: any) => Promise<void> | void | null;
@@ -17,48 +20,56 @@ export interface IProps {
   screenName: string;
 }
 
-interface IState {
-  loading: boolean;
-  fetching: string;
-  dirty: boolean;
-}
+interface IState {}
 
 class DeviceSettings extends PureComponent<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
+  state = { loading: false, device: {}, updating: false };
 
-    this.state = { loading: false, fetching: '', dirty: false };
+  componentDidMount() {
+    this._fechData();
   }
 
-  _handleOnSubmit = async (values: any) => {
-    const { componentId, userInfo } = this.props;
-    this.setState({ loading: true });
+  _fechData = async () => {
     try {
-      this.setState({ loading: false });
-      console.log(values);
-      console.log(userInfo);
+      const userId = auth().currentUser?.email || '';
+      this.setState({ loading: true });
+      const res = await firestore().collection('devices').doc(userId).get();
+      this.setState({ loading: false, device: res.data() });
     } catch (e) {
-      this.setState({ loading: false });
-      __DEV__ && console.error(e);
+      showInfo('Something unexpected happen');
     }
+  };
+
+  _handleOnSubmit = async (values: any) => {
+    try {
+      this.setState({ updating: true });
+      const userId = auth().currentUser?.email || '';
+      await firestore().collection('devices').doc(userId).set(values);
+      showInfo('Settings updated!');
+      this.setState({ updating: false });
+      this._onDismiss();
+    } catch (e) {
+      showInfo();
+    }
+  };
+
+  _onDismiss = () => {
+    const { componentId } = this.props;
+    Keyboard.dismiss();
+    InteractionManager.runAfterInteractions(() => Navigation.pop(componentId));
   };
 
   render() {
     const { componentId } = this.props;
-    const { loading } = this.state;
-    const initialValues = {
-      deviceName: '',
-      deviceId: '',
-      deviceLocationProvince: '',
-      deviceLocationCity: '',
-      deviceLocationPostalCode: '',
-      deviceLocationAppartmentNumber: '',
-      deviceLocationShortDescription: '',
-    };
+    const { loading, updating, device } = this.state;
+
+    if (loading) {
+      return <Loading />;
+    }
 
     return (
       <Form
-        initialValues={initialValues}
+        initialValues={device}
         onSubmit={this._handleOnSubmit}
         render={({ handleSubmit }) => (
           <View style={s.f1}>
@@ -68,19 +79,18 @@ class DeviceSettings extends PureComponent<IProps, IState> {
               <KeyboardAvoidingView>
                 <View style={s.wrapper}>
                   <Field component={InputField} label="Your Device Name" name="deviceName" validate={validateRequiredField} />
-                  <Field component={InputField} label="Your Device ID" name="deviceId" validate={validateRequiredField} />
 
                   <Text style={s.divider}>Location</Text>
                   <Field component={InputField} label="Province" name="deviceLocationProvince" validate={validateRequiredField} />
                   <Field component={InputField} label="City" name="deviceLocationCity" validate={validateRequiredField} />
                   <Field component={InputField} label="Postal Code" name="deviceLocationPostalCode" validate={validateRequiredField} />
-                  <Field component={InputField} label="Appartment Number" name="deviceLocationAppartmentNumber" validate={validateRequiredField} />
+                  <Field component={InputField} label="Appartment Number (Optional)" name="deviceLocationAppartmentNumber" />
                   <Field component={InputField} label="Short Description (Optional)" name="deviceLocationShortDescription" />
                 </View>
               </KeyboardAvoidingView>
             </ScrollView>
 
-            <Button loading={loading} disabled={loading} onPress={() => handleSubmit(this._handleOnSubmit as any)} style={s.m10} title="Submit" />
+            <Button loading={updating} disabled={loading} onPress={() => handleSubmit(this._handleOnSubmit as any)} style={s.m10} title="Save" />
           </View>
         )}
       />

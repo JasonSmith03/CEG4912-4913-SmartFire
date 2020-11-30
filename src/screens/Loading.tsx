@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import auth from '@react-native-firebase/auth';
 
-import { Home } from '.';
+import { Auth, Home } from '.';
 import { icons } from '../ui';
 import { ms } from 'react-native-size-matters';
 
@@ -13,7 +14,11 @@ class Loading extends PureComponent {
 
   _run = async () => {
     try {
-      setTimeout(() => Navigation.setRoot(Home), 1000);
+      if (auth().currentUser) {
+        setTimeout(() => Navigation.setRoot(Home), 1000);
+      } else {
+        setTimeout(() => Navigation.setRoot(Auth), 1000);
+      }
     } catch (e) {
       // We're not signed in use guest credentials
     }

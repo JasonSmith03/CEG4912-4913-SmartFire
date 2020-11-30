@@ -28,7 +28,8 @@ Navigation.setLazyComponentRegistrator((componentName) => {
   if (componentName === 'app.Loading') Navigation.registerComponent('app.Loading', () => sceneCreator(require('./Loading').default));
   if (componentName === 'app.Home') Navigation.registerComponent('app.Home', () => sceneCreator(require('./Home').default));
 
-  if (componentName === 'app.Auth') Navigation.registerComponent('app.Auth', () => sceneCreator(require('./Auth').default));
+  if (componentName === 'app.SignIn') Navigation.registerComponent('app.SignIn', () => sceneCreator(require('./SignIn').default));
+  if (componentName === 'app.Register') Navigation.registerComponent('app.Register', () => sceneCreator(require('./Register').default));
 
   if (componentName === 'app.Onboarding') Navigation.registerComponent('app.Onboarding', () => sceneCreator(require('./Onboarding').default));
 
@@ -39,15 +40,25 @@ Navigation.setLazyComponentRegistrator((componentName) => {
     Navigation.registerComponent('app.DeviceSettings', () => sceneCreator(require('./DeviceSettings').default));
 });
 
+export const Auth = {
+  root: {
+    stack: {
+      children: [
+        { component: { name: 'app.SignIn', id: 'app.SignIn' } },
+        { component: { name: 'app.Register', id: 'app.Register' } },
+        { component: { name: 'app.Onboarding', id: 'app.Onboarding' } },
+      ],
+    },
+  },
+};
+
 export const Home = {
   root: {
     stack: {
       children: [
         { component: { name: 'app.PersonalInformation', id: 'app.PersonalInformation' } },
         { component: { name: 'app.DeviceSettings', id: 'app.DeviceSettings' } },
-        { component: { name: 'app.Auth', id: 'app.Auth' } },
         { component: { name: 'app.Home', id: 'app.Home' } },
-        { component: { name: 'app.Onboarding', id: 'app.Onboarding' } },
       ],
     },
   },

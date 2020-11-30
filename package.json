@@ -12,6 +12,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^10.1.0",
+    "@react-native-firebase/auth": "^10.1.0",
+    "@react-native-firebase/firestore": "^10.1.0",
     "clearx": "^2.1.1",
     "final-form": "^4.20.1",
     "lodash.get": "^4.4.2",
