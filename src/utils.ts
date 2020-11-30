@@ -57,8 +57,6 @@ export const validatePhoneNumber = (value: string) => {
 
   if (!value) {
     error = 'Field Required';
-  } else if (value.trim().charAt(0) !== '+') {
-    error = 'Phone Number Invalid';
   } else if (!value.trim().match(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im)) {
     error = 'Phone Number Invalid';
   }

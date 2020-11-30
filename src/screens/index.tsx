@@ -33,6 +33,8 @@ Navigation.setLazyComponentRegistrator((componentName) => {
 
   if (componentName === 'app.Onboarding') Navigation.registerComponent('app.Onboarding', () => sceneCreator(require('./Onboarding').default));
 
+  if (componentName === 'app.Emergency') Navigation.registerComponent('app.Emergency', () => sceneCreator(require('./Emergency').default));
+
   if (componentName === 'app.PersonalInformation')
     Navigation.registerComponent('app.PersonalInformation', () => sceneCreator(require('./PersonalInformation').default));
 
@@ -58,6 +60,7 @@ export const Home = {
       children: [
         { component: { name: 'app.PersonalInformation', id: 'app.PersonalInformation' } },
         { component: { name: 'app.DeviceSettings', id: 'app.DeviceSettings' } },
+        { component: { name: 'app.Emergency', id: 'app.Emergency' } },
         { component: { name: 'app.Home', id: 'app.Home' } },
       ],
     },

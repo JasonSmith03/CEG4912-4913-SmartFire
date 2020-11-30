@@ -29,7 +29,10 @@ class Home extends PureComponent<IProps, IState> {
 
   _renderMenuItem = ({ icon, text, screen }) => (
     <View style={s.itemContainer}>
-      <TouchableOpacity onPress={() => Navigation.push(this.props.componentId, { component: { name: screen } })} style={s.itemWrapper}>
+      <TouchableOpacity
+        disabled={!screen}
+        onPress={() => Navigation.push(this.props.componentId, { component: { name: screen } })}
+        style={s.itemWrapper}>
         <Image source={{ uri: icon }} style={s.itemImage} />
         <Text style={s.itemText}>{text}</Text>
       </TouchableOpacity>
@@ -57,8 +60,8 @@ class Home extends PureComponent<IProps, IState> {
         <View style={s.menuContainer}>
           {this._renderMenuItem({ text: 'Profile', icon: 'profile', screen: 'app.PersonalInformation' })}
           {this._renderMenuItem({ text: 'Fire Alarm', icon: 'firealarm', screen: 'app.DeviceSettings' })}
-          {this._renderMenuItem({ text: 'Emergency', icon: 'emergency', screen: 'app.DeviceSettings' })}
-          {this._renderMenuItem({ text: 'Wearable', icon: 'wearable', screen: 'app.DeviceSettings' })}
+          {this._renderMenuItem({ text: 'Emergency', icon: 'emergency', screen: 'app.Emergency' })}
+          {this._renderMenuItem({ text: 'Wearable', icon: 'wearable', screen: '' })}
         </View>
       </View>
     );

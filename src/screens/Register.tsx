@@ -65,7 +65,7 @@ class Register extends PureComponent<IProps, IState> {
               <KeyboardAvoidingView>
                 <View style={s.wrapper}>
                   <Field component={InputField} label="Your Email" name="email" validate={validateRequiredField} />
-                  <Field component={InputField} label="Your Password" name="password" validate={validateRequiredField} />
+                  <Field secureTextEntry component={InputField} label="Your Password" name="password" validate={validateRequiredField} />
                 </View>
               </KeyboardAvoidingView>
             </ScrollView>
