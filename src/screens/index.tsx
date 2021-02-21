@@ -2,10 +2,16 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import messaging from '@react-native-firebase/messaging';
 
 declare function require(name: string): { default: any };
 
 function sceneCreator(sceneComp: any): any {
+  // Register background handler
+  messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+    console.log('Message handled in the background!', remoteMessage);
+  });
+
   class SceneWrapper extends React.Component {
     static options(passProps: any) {
       return sceneComp.options ? sceneComp.options(passProps) : {};

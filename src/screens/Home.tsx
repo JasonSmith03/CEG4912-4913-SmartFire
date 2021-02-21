@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
 
 import { icons } from '../ui';
 import { colors } from '../theme';
@@ -20,6 +21,18 @@ interface IState {
 class Home extends PureComponent<IProps, IState> {
   public static defaultProps = {
     defaultValue: '',
+  };
+
+  componentDidMount() {
+    this._subscribeToTopic();
+  }
+
+  _subscribeToTopic = () => {
+    const userId = auth().currentUser?.email || '';
+
+    messaging()
+      .subscribeToTopic(userId.replace('@', '_'))
+      .then(() => console.log('Subscribed to topic!'));
   };
 
   _gotoNext = () => {
