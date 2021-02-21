@@ -1139,23 +1139,28 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.1.0.tgz#e42b1bef12d2415411519fd528e64b593b1363dc"
   integrity sha512-W/J0fNYVO01tioHjvYWQ9m6RgndVtbElzYozBq1ZPrHO/iCzlqoySHl4gO/fpCl9QEFjvJfjPgtPMTMlsoq5DQ==
 
-"@react-native-firebase/app@^10.1.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-10.1.0.tgz#4242933c52b4b753ba48216092c0447677118342"
-  integrity sha512-O8IxJU0K3mmmxaz2EZW+BuC08agr3m2eybxBq+SkcJri1fv95qVsNabABWPS7h4uSHQ5m1qHCtQJnvbnHwMrvA==
+"@react-native-firebase/app@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-10.8.0.tgz#130dd841183d45ff378e6aab2b6e89a30d7c499d"
+  integrity sha512-VIWVpqb+V4ltOEmpUEfcsA/ZmcV+FLWGMlRGN+xB/cXorD3nYhYF/LPxOtX7TOHrlxPeL2dikLry9hKv4PlZCw==
   dependencies:
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
-"@react-native-firebase/auth@^10.1.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-10.1.0.tgz#95584a428b52bef4850ff8ba47f8fb23e4e1e71d"
-  integrity sha512-Oeftl0x22NjnvnpK9iyQC/zVZ5blbSI4iQ0emmj17w1IMvWpJ0Z4bpe5p1RlXRDqAFdP7/y3MXx6VEoakcupkw==
+"@react-native-firebase/auth@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-10.8.0.tgz#a13da7a77b9d3f356a94c081e3aedbfa8230e037"
+  integrity sha512-aKKImq/z1kaWNvssWqb0aBgtctH34Pnke6wFTM6GE3R3uGZ57d+lPVl+57az8D3nj5xVwJyNftl6/1WmPzCPBw==
 
-"@react-native-firebase/firestore@^10.1.0":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-10.1.0.tgz#ee18d1e8b1153490470255db50711a526cfb386c"
-  integrity sha512-RIpSZZjeH9JLCI6rwNpC5SIsFprGvWXp3mtUNW2UzyYpi38+wB4Scuer9Kb456hMr6joJhma2wI9ypWv2r5oUg==
+"@react-native-firebase/firestore@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-10.8.0.tgz#1efa15d71b7c89b8c92a36198a2c2c651f8d9c82"
+  integrity sha512-HRt4q/P15ejmHjtQ5j21vFXpSmpMYE9JYyFo6PSonL9wFtuA8ujEeX/OVUf1c8JRAZMdTCVdchHUDdFsABUWUg==
+
+"@react-native-firebase/messaging@^10.8.0":
+  version "10.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-10.8.0.tgz#b306eba8f9c5bd1de153553d65abb23039892230"
+  integrity sha512-93xjjUhp61wIVADONX51Gry4k4luaENrsnbYjwxoUnWcG5vxHIAwPbeXwWIfEs1/oiv7vvXScc11WjE95LLfiw==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"

@@ -59,8 +59,7 @@ class Home extends PureComponent<IProps, IState> {
 
         <View style={s.menuContainer}>
           {this._renderMenuItem({ text: 'Profile', icon: 'profile', screen: 'app.PersonalInformation' })}
-          {this._renderMenuItem({ text: 'Fire Alarm', icon: 'firealarm', screen: 'app.DeviceSettings' })}
-          {this._renderMenuItem({ text: 'Emergency', icon: 'emergency', screen: 'app.Emergency' })}
+          {this._renderMenuItem({ text: 'Devices', icon: 'firealarm', screen: 'app.DeviceSettings' })}
           {this._renderMenuItem({ text: 'Wearable', icon: 'wearable', screen: '' })}
         </View>
       </View>

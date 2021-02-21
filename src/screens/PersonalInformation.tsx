@@ -36,6 +36,8 @@ class PersonalInformation extends PureComponent<IProps, IState> {
       const res = await firestore().collection('users').doc(userId).get();
       this.setState({ loading: false, profile: res.data() });
     } catch (e) {
+      console.log(e);
+
       showInfo('Something unexpected happen');
     }
   };
@@ -80,13 +82,11 @@ class PersonalInformation extends PureComponent<IProps, IState> {
             <ScrollView style={s.f1}>
               <KeyboardAvoidingView>
                 <View style={s.wrapper}>
-                  <Field component={InputField} label="Your Full Name" name="fullName" validate={validateRequiredField} />
+                  <Field component={InputField} label="Your Full Name" name="name" validate={validateRequiredField} />
                   <Field component={InputField} editable={false} label="Your Email" name="email" validate={validateEmail} />
 
-                  <Text style={s.divider}>Close Contacts</Text>
-                  <Field component={InputField} label="Phone Number 1" name="familyContact1" />
-                  <Field component={InputField} label="Phone Number 2" name="familyContact2" />
-                  <Field component={InputField} label="Phone Number 3" name="familyContact3" />
+                  <Text style={s.divider}>Other Information</Text>
+                  <Field component={InputField} label="Disabiliy" name="disability" />
                 </View>
               </KeyboardAvoidingView>
             </ScrollView>
